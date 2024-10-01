@@ -598,6 +598,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4235835927681930608, guid: ae17b8cad7290d0479b1d98d1a792b58, type: 3}
+      propertyPath: gridManager
+      value: 
+      objectReference: {fileID: 778802956}
     - target: {fileID: 7242353010797153167, guid: ae17b8cad7290d0479b1d98d1a792b58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
