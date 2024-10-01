@@ -52,12 +52,12 @@ public class PlayerMovement : MonoBehaviour
         playerX = (int)transform.position.x;
         playerY = (int)transform.position.y;
         
-        if (playerX + _direction.x >= 0 && playerX + _direction.x <= gridManager.GetGridWidth())
+        if (playerX + _direction.x >= 0 && playerX + _direction.x <= gridManager.GameGrid.GridWidth)
         {
             playerX += (int)_direction.x;
         }
         
-        if (playerY + _direction.y >= 0 && playerY + _direction.y <= gridManager.GetGridHeight())
+        if (playerY + _direction.y >= 0 && playerY + _direction.y <= gridManager.GameGrid.GridHeight)
         {
             playerY += (int)_direction.y;
         }
@@ -75,5 +75,10 @@ public class PlayerMovement : MonoBehaviour
             _timeSinceLastMove = 0;
             MovePlayer();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        
     }
 }
