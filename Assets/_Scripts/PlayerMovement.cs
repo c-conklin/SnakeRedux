@@ -7,10 +7,21 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("Player Movement")]
-    [SerializeField] private float speed = 1.0f;
-    [SerializeField] private float speedMultiplier = 2.0f;
+    [SerializeField] private float playerGridMovesPerSecond = 4;
     
-    private Vector2 direction;
+    [Header("Player Position")]
+    private int playerX = 0;
+    private int playerY = 0;
+    
+    public GridManager gridManager;
+    
+    private Vector2 _direction;
+    private float _timeSinceLastMove = 0;
+    
+    void Start()
+    {
+        transform.position = new Vector3(playerX, playerY, 0);
+    }
     
     
     // Update is called once per frame
@@ -18,23 +29,51 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            direction = Vector2Int.up;
+            _direction = Vector2Int.up;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            direction = Vector2Int.down;
+            _direction = Vector2Int.down;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            direction = Vector2Int.left;
+            _direction = Vector2Int.left;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            direction = Vector2Int.right;
+            _direction = Vector2Int.right;
         }
+    }
+    
+    private void MovePlayer()
+    {
+        playerX = (int)transform.position.x;
+        playerY = (int)transform.position.y;
+        
+        if (playerX + _direction.x >= 0 && playerX + _direction.x <= gridManager.GetGridWidth())
+        {
+            playerX += (int)_direction.x;
+        }
+        
+        if (playerY + _direction.y >= 0 && playerY + _direction.y <= gridManager.GetGridHeight())
+        {
+            playerY += (int)_direction.y;
+        }
+        
+        transform.position = new Vector3(playerX, playerY, 0);
+    }
 
-        transform.Translate(direction * (speed * speedMultiplier) * Time.deltaTime);
+    private void FixedUpdate()
+    {
+        _timeSinceLastMove += Time.fixedDeltaTime;
+        
+        // Move the player every 1 / playerGridMovesPerSecond seconds
+        if (_timeSinceLastMove >= 1f / playerGridMovesPerSecond)
+        {
+            _timeSinceLastMove = 0;
+            MovePlayer();
+        }
     }
 }
