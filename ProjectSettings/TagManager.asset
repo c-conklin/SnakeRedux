@@ -40,24 +40,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
-  - name: Player
-    uniqueID: 2287924169
-    locked: 0
-  - name: Food
-    uniqueID: 355520671
-    locked: 0
-  - name: Structures
-    uniqueID: 2808919335
-    locked: 0
-  - name: Patterns
-    uniqueID: 1341452827
+  - name: Background
+    uniqueID: 330190321
     locked: 0
   - name: Grid
     uniqueID: 724529043
     locked: 0
-  - name: Background
-    uniqueID: 330190321
+  - name: Structures
+    uniqueID: 2808919335
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Patterns
+    uniqueID: 1341452827
+    locked: 0
+  - name: Food
+    uniqueID: 355520671
+    locked: 0
+  - name: Player
+    uniqueID: 2287924169
     locked: 0

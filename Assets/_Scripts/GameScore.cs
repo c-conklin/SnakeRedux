@@ -1,15 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace _Scripts
 {
     [CreateAssetMenu(fileName = "GameScore", menuName = "Game/Score", order = 0)]
     public class GameScore : ScriptableObject
     {
-        public int score;
+        private int score;
         
-        public void AddScore(int amount)
+        public int Score => score;
+
+        private void OnEnable()
         {
-            score += amount;
+            FoodSpawner.OnFoodEaten += AddScore;
+        }
+        
+        private void OnDisable()
+        {
+            FoodSpawner.OnFoodEaten -= AddScore;
+        }
+        
+        public void AddScore()
+        {
+            score++;
         }
         
         public void ResetScore()
